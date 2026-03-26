@@ -1,0 +1,51 @@
+# Must start from 1,1
+
+(a1t0r1c1)
+
+# Must end at 2,2
+
+(a1t2r2c2)
+
+# Must be in at least one spot at all times (that isn't a trap spot, don't include 1,2)
+
+(a1t0r1c1 | a1t0r2c1 | a1t0r2c2)
+(a1t1r1c1 | a1t1r2c1 | a1t1r2c2)
+(a1t2r1c1 | a1t2r2c1 | a1t2r2c2)
+
+# Must be in at most one spot at all times (apart from trap spots, don't include pairs that include 1,2)
+
+(~a1t0r1c1 | ~a1t0r2c1)
+(~a1t0r1c1 | ~a1t0r2c2)
+(~a1t0r2c1 | ~a1t0r2c2)
+
+(~a1t1r1c1 | ~a1t1r2c1)
+(~a1t1r1c1 | ~a1t1r2c2)
+(~a1t1r2c1 | ~a1t1r2c2)
+
+(~a1t2r1c1 | ~a1t2r2c1)
+(~a1t2r1c1 | ~a1t2r2c2)
+(~a1t2r2c1 | ~a1t2r2c2)
+
+# Transitions from each spot, for each time (can't transition to 1,2 as it is a trap, exlude it)
+
+# From 1,1, can go to 1,1 or 2,1
+
+a1t0r1c1 -> a1t1r1c1 | a1t1r2c1 = (~a1t0r1c1 | a1t1r1c1 | a1t1r2c1)
+a1t1r1c1 -> a1t2r1c1 | a1t2r2c1 = (~a1t1r1c1 | a1t2r1c1 | a1t2r2c1)
+
+# From 2,1, can go to 1,1 or 2,1 or 2,2
+
+(~a1t0r2c1 | a1t1r1c1 | a1t1r2c1 | a1t1r2c2)
+(~a1t1r2c1 | a1t2r1c1 | a1t2r2c1 | a1t2r2c2)
+
+# From 2,2, can to go 2,1 or 2,2
+
+(~a1t0r2c2 | a1t1r2c1 | a1t1r2c2)
+(~a1t1r2c2 | a1t2r2c1 | a1t2r2c2)
+
+# Avoid traps
+
+# Trap at 1,2 can never be occupied
+(~a1t0r1c2)
+(~a1t1r1c2)
+(~a1t2r1c2)
