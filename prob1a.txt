@@ -1,1 +1,48 @@
+has to start in 1,1
 
+(a1t0r1c1)
+
+has to end in 1,3
+
+(a1t2r1c3)
+
+Uniqueness
+
+Can't be in more than one spot at each time
+
+~(a1t0r1c1 & a1t0r1c2) = (~a1t0r1c1 | ~a1t0r1c2)
+
+For all pairs and times: 
+
+(~a1t0r1c1 | ~a1t0r1c2)
+(~a1t0r1c1 | ~a1t0r1c3)
+(~a1t0r1c2 | ~a1t0r1c3)
+(~a1t1r1c1 | ~a1t1r1c3)
+(~a1t1r1c1 | ~a1t1r1c2)
+(~a1t1r1c2 | ~a1t1r1c3)
+(~a1t2r1c1 | ~a1t2r1c2)
+(~a1t2r1c1 | ~a1t2r1c3)
+(~a1t2r1c2 | ~a1t2r1c3)
+
+Has to be in at least one spot at each time
+
+(a1t0r1c1 | a1t0r1c2 | a1t0r1c3)
+(a1t1r1c1 | a1t1r1c2 | a1t1r1c3)
+(a1t2r1c1 | a1t2r1c2 | a1t2r1c3)
+
+
+Transitions
+If in spot 1,1, has to stay in 1,1 or go to 1,2
+
+a1t0r1c1 -> a1t1r1c1 | a1t1r1c2 = (~a1t0r1c1 | a1t1r1c1 | a1t1r1c2)
+a1t1r1c1 -> a1t2r1c1 | a1t2r1c2 = (~a1t1r1c1 | a1t2r1c1 | a1t2r1c2)
+
+If in spot 1,2, has to stay in 1,2, or go to 1,3
+
+a1t0r1c2 -> a1t1r1c1 | a1t1r1c2 | a1t1r1c3 = (~a1t0r1c2 | a1t1r1c1 | a1t1r1c2 | a1t1r1c3)
+a1t1r1c2 -> a1t2r1c1 | a1t2r1c2 | a1t2r1c3 = (~a1t1r1c2 | a1t2r1c1 | a1t2r1c2 | a1t2r1c3)
+
+If in spot 1,3, has to stay in 1,3 or go to 1,2
+
+a1t0r1c3 -> a1t1r1c2 | a1t1r1c3 = (~a1t0r1c3 | a1t1r1c2 | a1t1r1c3)
+a1t1r1c3 -> a1t2r1c2 | a1t2r1c3 = (~a1t1r1c3 | a1t2r1c2 | a1t2r1c3)
