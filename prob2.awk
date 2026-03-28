@@ -40,7 +40,11 @@ function isFree(r, c) {
 # One line gives N, M, T in any position of the file.
 # Write a pattern-action statement for that here.
 #------------------------------------------------------------
-####
+/^[[:space:]]*[0-9]+[[:space:]]+[0-9]+[[:space:]]+[0-9]+[[:space:]]*$/ {
+  N = $1
+  M = $2
+  T = $3
+}
 
 #------------------------------------------------------------
 # Match a valid cell line:
