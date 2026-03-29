@@ -40,14 +40,18 @@ function isFree(r, c) {
 # One line gives N, M, T in any position of the file.
 # Write a pattern-action statement for that here.
 #------------------------------------------------------------
-####
+/^[[:space:]]*[0-9]+[[:space:]]+[0-9]+[[:space:]]+[0-9]+[[:space:]]*$/ {
+  N = $1
+  M = $2
+  T = $3
+}
 
 #------------------------------------------------------------
 # Match a valid cell line:
 # row_index col_index separator symbol
 # where separator is any non-empty combination of - and :
 #------------------------------------------------------------
-#### {
+/^[[:space:]]*[0-9]+[[:space:]]+[0-9]+[[:space:]]+[-:]+[[:space:]]+[\#\.a-zA-Z][[:space:]]*$/ {
   # Normalize whitespace, then parse:
   # f[1]=row, f[2]=col, f[3]=separator, f[4]=symbol.
   line = $0;
@@ -138,7 +142,7 @@ END {
       for (r = 1; r <= N; r++) {
         for (c = 1; c <= M; c++) {
           if (cell[r,c] == "#") {
-            ####
+            emitClause("~" varName(i, t, r, c));
           }
         }
       }
@@ -179,7 +183,7 @@ END {
         if (!isFree(r, c)) continue;
         for (i = 1; i <= K-1; i++) {
           for (j = i+1; j <= K; j++) {
-            ####
+            emitClause("~" varName(i, t, r, c) " | ~" varName(j, t, r, c));
           }
         }
       }
