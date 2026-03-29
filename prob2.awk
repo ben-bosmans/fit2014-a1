@@ -51,7 +51,7 @@ function isFree(r, c) {
 # row_index col_index separator symbol
 # where separator is any non-empty combination of - and :
 #------------------------------------------------------------
-#### {
+/^[[:space:]]*[0-9]+[[:space:]]+[0-9]+[[:space:]]+[-:]+[[:space:]]+[\#\.a-zA-Z][[:space:]]*$/ {
   # Normalize whitespace, then parse:
   # f[1]=row, f[2]=col, f[3]=separator, f[4]=symbol.
   line = $0;
@@ -183,7 +183,7 @@ END {
         if (!isFree(r, c)) continue;
         for (i = 1; i <= K-1; i++) {
           for (j = i+1; j <= K; j++) {
-            ####
+            emitClause()
           }
         }
       }
