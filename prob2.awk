@@ -142,7 +142,7 @@ END {
       for (r = 1; r <= N; r++) {
         for (c = 1; c <= M; c++) {
           if (cell[r,c] == "#") {
-            ####
+            emitClause("~" varName(i, t, r, c));
           }
         }
       }
