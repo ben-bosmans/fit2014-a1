@@ -183,7 +183,7 @@ END {
         if (!isFree(r, c)) continue;
         for (i = 1; i <= K-1; i++) {
           for (j = i+1; j <= K; j++) {
-            emitClause()
+            emitClause("~" varName(i, t, r, c) " | ~" varName(j, t, r, c));
           }
         }
       }
